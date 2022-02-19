@@ -5,6 +5,8 @@ import './Login.css'
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Routing from './Routing';
+import { Link } from 'react-router-dom';
 
 
 export default function Login(){
@@ -24,6 +26,7 @@ export default function Login(){
 
     return(
         <Container>
+            <Routing/>
             <Paper elevation={2} className='login-paper' >
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Login
@@ -34,6 +37,7 @@ export default function Login(){
                     <TextField label='Password' type='password' variant='outlined' fullWidth value={password}
                     onChange={(e)=>setPassword(e.target.value)} className="small-margin-below"/>
                     <Button variant="outlined" onClick={login} className="small-margin-below">Login</Button>
+                    <Button variant="outlined"  className="small-margin-below">Register</Button>
                 </form>
                 {error}
             </Paper>
