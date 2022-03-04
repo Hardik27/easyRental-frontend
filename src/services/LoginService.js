@@ -1,9 +1,10 @@
 import axios from "axios"
-const USER_REST_API_URL="http://localhost:8080/login"
+const USER_REST_API_URL="http://localhost:8080"
 
 class LoginService{
-    getUsers(){
-        return axios.get(USER_REST_API_URL);
+    login(payLoad){
+        var response=axios.post(`${USER_REST_API_URL}`+"/login",payLoad);
+        console.log(response);
     }
 }
 

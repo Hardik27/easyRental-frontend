@@ -1,6 +1,7 @@
 import './App.css';
 import EasyRentalAppBar from './components/EasyRentalAppBar';
 import Login from './components/Login';
+import Register from './components/Register';
 
 
 
@@ -9,6 +10,7 @@ function App() {
     <div className="App">
       <div>
         <EasyRentalAppBar/>
+        <Register/>
         <Login/>
       </div>
     </div>

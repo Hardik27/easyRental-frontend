@@ -1,32 +1,29 @@
 import React, { useState } from 'react';
 import Container from '@mui/material/Container';
-import { TextField } from '@mui/material/';
+import { Switch, TextField } from '@mui/material/';
 import './Login.css'
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Routing from './Routing';
-import { Link } from 'react-router-dom';
+import { Link, NavLink, BrowserRouter as Router, Route } from 'react-router-dom';
+import LoginService from '../services/LoginService';
+import { sha256 } from 'js-sha256';
 
 
 export default function Login(){
     const[userName, setUserName]=useState('');
     const[password, setPassword]=useState('');
     const[error, setError]=useState('');
+    var sha256 = require('js-sha256').sha256;
     const login=(e)=>{
         e.preventDefault();
-        const loginDetails={email: userName, pass: password};
+        const loginDetails={email: userName, password: sha256(password)};
         console.log(loginDetails);
-        if(userName=='abc@gmail.com' && password=='1234'){
-            setError("Login successful");
-        }else{
-            setError("Incorrect username/password");
-        }
+        LoginService.login(loginDetails);
     }
 
     return(
         <Container>
-            <Routing/>
             <Paper elevation={2} className='login-paper' >
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Login

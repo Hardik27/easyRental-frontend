@@ -5,6 +5,7 @@ import { TextField } from '@mui/material/';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import RegisterUserService from "../services/RegisterUserService";
 
 
 export default function Register(){
@@ -14,17 +15,20 @@ export default function Register(){
     const[password, setPassword] = useState('');
     const[number, setNumber] = useState('');
     const[country, setCountry] = useState('');
-    const[address, setAddress] = useState('');
+    const[addressLine1, setAddressLine1] = useState('');
+    const[addressLine2, setAddressLine2] = useState('');
     const[city, setCity] = useState('');
     const[state, setState] = useState('');
     const[zipCode, setZipCode] = useState('');
     const[error, setError] = useState('');
-
+    var sha256 = require('js-sha256').sha256;
     const register = (e) =>{
         e.preventDefault();
-        const loginDetails={email: email, pass: password, fname: firstName, lname: lastName, number: number,
-            country: country,address: address,city: city,state: state,pin: zipCode};
-        console.log(loginDetails);  
+        const registerUserPayLoad={email: email, password: sha256(password), firstName: firstName, lastName: lastName, mobile: number,
+            country: country, addressLine1: addressLine1, addressLine2: addressLine2, city: city, 
+            state: state, zipCode: zipCode};
+        console.log(registerUserPayLoad);
+        RegisterUserService.registerUser(registerUserPayLoad);
         setError("Registration successful");  
     }
 
@@ -47,8 +51,10 @@ export default function Register(){
                     onChange={(e)=>setNumber(e.target.value)} className="small-margin-below"/>
                     <TextField label='Country'  variant='outlined' fullWidth value={country}
                     onChange={(e)=>setCountry(e.target.value)} className="small-margin-below"/>
-                    <TextField label='Address'  variant='outlined' fullWidth value={address}
-                    onChange={(e)=>setAddress(e.target.value)} className="small-margin-below"/>
+                    <TextField label='Address Line 1'  variant='outlined' fullWidth value={addressLine1}
+                    onChange={(e)=>setAddressLine1(e.target.value)} className="small-margin-below"/>
+                    <TextField label='Address Line 2'  variant='outlined' fullWidth value={addressLine2}
+                    onChange={(e)=>setAddressLine2(e.target.value)} className="small-margin-below"/>
                     <TextField label='State'  variant='outlined' fullWidth value={state}
                     onChange={(e)=>setState(e.target.value)} className="small-margin-below"/>
                     <TextField label='City'  variant='outlined' fullWidth value={city}
