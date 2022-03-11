@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import Input from '@material-ui/core/Input';
+import EasyRentalAppBar from "./EasyRentalAppBar";
 
 
 export default function RegisterProduct(){
@@ -23,7 +24,9 @@ export default function RegisterProduct(){
     }
 
     return (
-        <Container>
+        <div>
+            <EasyRentalAppBar/>
+            <Container>
             <Paper elevation={2} className='login-paper' >
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Register
@@ -44,6 +47,7 @@ export default function RegisterProduct(){
                 </form>
             </Paper>
         </Container>
+        </div>
     )
 
 }

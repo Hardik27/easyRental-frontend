@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import Login from "./Login";
+import EasyRentalAppBar from "./EasyRentalAppBar";
 
 export default function RegisterConfirmation( ){
     const navigate = useNavigate();
@@ -15,7 +16,9 @@ export default function RegisterConfirmation( ){
     }
 
     return(
-        <Container>
+        <div>
+            <EasyRentalAppBar/>
+            <Container>
             <Paper elevation={2} className='login-paper' >
                 <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
                     Registration successful
@@ -25,5 +28,6 @@ export default function RegisterConfirmation( ){
                 </form>
             </Paper>
         </Container>
+        </div>
     );
 }

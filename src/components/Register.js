@@ -6,8 +6,10 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import axios from "axios"
+import EasyRentalAppBar from "./EasyRentalAppBar";
 import RegisterUserService from "../services/RegisterUserService";
 import { useNavigate } from 'react-router-dom';
+
 
 const USER_REST_API_URL="http://localhost:8080"
 
@@ -52,7 +54,9 @@ export default function Register(){
     
 
     return (
-        <Container>
+        <div>
+            <EasyRentalAppBar/>
+            <Container>
             <Paper elevation={2} className='login-paper' >
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Register
@@ -86,6 +90,7 @@ export default function Register(){
                 </form>
             </Paper>
         </Container>
+        </div>   
     )
 
 }

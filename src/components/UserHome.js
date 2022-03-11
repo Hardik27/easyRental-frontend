@@ -5,6 +5,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import EasyRentalAppBar from "./EasyRentalAppBar";
 
 
 export default function UserHome( ){
@@ -19,6 +20,8 @@ export default function UserHome( ){
     }
 
     return(
+        <div>
+            <EasyRentalAppBar/>
             <table>
                 <tr>
                     <td>
@@ -86,6 +89,6 @@ export default function UserHome( ){
                     </td>
                 </tr>
             </table>
-        
+        </div>
     );
 }

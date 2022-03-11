@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import LoginService from '../services/LoginService';
 import UserHome from './UserHome';
 import axios from "axios"
+import EasyRentalAppBar from './EasyRentalAppBar';
 const USER_REST_API_URL="http://localhost:8080"
 
 
@@ -55,7 +56,9 @@ export default function Login(){
     }
 
     return(
-        <Container>
+        <div>
+            <EasyRentalAppBar></EasyRentalAppBar>
+            <Container>
             <Paper elevation={2} className='login-paper' >
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Login
@@ -71,5 +74,6 @@ export default function Login(){
                 {error}
             </Paper>
         </Container>
+        </div>
     );
 }
