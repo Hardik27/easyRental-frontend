@@ -24,24 +24,35 @@ export default function Login(){
         setError("Incorrect Login credentials");
     }
 
-    const login=(e)=>{
-        e.preventDefault();
-        const loginDetails={email: userName, password: sha256(password)};
-        console.log(loginDetails);
-        axios.post(`${USER_REST_API_URL}`+"/",loginDetails)
-        .then(res => {
-            if(res.data === "Successful")
-            {
-                navigate("/userHome");
-            }
-            else
-                {
-                   settingError();
-                }
-          })
+    const validateLoginDetails=(loginDetails)=>{
+        if(loginDetails.email.length==0 || loginDetails.password.length==0){
+            return false;
+        }
+        return true;
     }
 
-    
+    const login=(e)=>{
+        e.preventDefault();
+        const loginFormData={email:userName, password: password};
+        console.log(loginFormData);
+        if(!validateLoginDetails(loginFormData)){
+            setError("Please enter a valid email/password");
+        }else{
+            const loginDetails={email: userName, password: sha256(password)};
+            console.log(loginDetails);
+            axios.post(`${USER_REST_API_URL}`+"/",loginDetails)
+            .then(res => {
+                if(res.data === "Successful")
+                {
+                    navigate("/userHome");
+                }
+                else
+                    {
+                    settingError();
+                    }
+            })
+        }
+    }
 
     return(
         <Container>

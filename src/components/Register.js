@@ -37,7 +37,7 @@ export default function Register(){
          
         axios.post(`${USER_REST_API_URL}`+"/registerUser",registerUserPayLoad) 
         .then(res => {
-            if(res.data === "Saved")
+            if(res.data === "Successful")
             {
                 navigate("/registerConfirmation");
             }
