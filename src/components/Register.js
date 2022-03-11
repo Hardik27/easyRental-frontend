@@ -5,10 +5,16 @@ import { TextField } from '@mui/material/';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import axios from "axios"
 import RegisterUserService from "../services/RegisterUserService";
+import { useNavigate } from 'react-router-dom';
 
+const USER_REST_API_URL="http://localhost:8080"
 
 export default function Register(){
+
+    const navigate = useNavigate();
+    
     const[email, setEmail] = useState('');
     const[firstName, setFirstName] = useState('');
     const[lastName, setLastName] = useState('');
@@ -28,9 +34,22 @@ export default function Register(){
             country: country, addressLine1: addressLine1, addressLine2: addressLine2, city: city, 
             state: state, zipCode: zipCode};
         console.log(registerUserPayLoad);
-        RegisterUserService.registerUser(registerUserPayLoad);
-        setError("Registration successful");  
+         
+        axios.post(`${USER_REST_API_URL}`+"/registerUser",registerUserPayLoad) 
+        .then(res => {
+            if(res.data === "Saved")
+            {
+                navigate("/registerConfirmation");
+            }
+            else
+                {
+                   setError("Already registered");
+                }
+          })
+        
     }
+
+    
 
     return (
         <Container>
@@ -38,6 +57,7 @@ export default function Register(){
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Register
                 </Typography>
+                {error}
                 <form className='login-form' noValidate autoComplete='off'>
                     <TextField  type='email' label='Email' variant='outlined' fullWidth value={email}
                     onChange={(e)=>setEmail(e.target.value)} className="small-margin-below"/>
@@ -62,8 +82,8 @@ export default function Register(){
                     <TextField label='Zip Code'  variant='outlined' fullWidth value={zipCode}
                     onChange={(e)=>setZipCode(e.target.value)} className="small-margin-below"/>
                     <Button variant="outlined" onClick={register} className="small-margin-below">Register</Button>
+                    <Button variant="outlined" onClick={() => navigate(-1)} className="small-margin-below">Back</Button>
                 </form>
-                {error}
             </Paper>
         </Container>
     )
