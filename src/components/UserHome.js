@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import './Register.css';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -6,22 +6,28 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import EasyRentalAppBar from "./EasyRentalAppBar";
+import { myStorage } from "../App";
 
 
-export default function UserHome( ){
+export default function UserHome() {
     const navigate = useNavigate();
 
-    const regProductPage = () =>{
+    const regProductPage = () => {
         navigate("/registerProduct");
     }
 
-    const borrowProductPage = () =>{
+    const borrowProductPage = () => {
         navigate("/borrowProduct");
     }
 
-    return(
+    const logout = () => {
+        myStorage.clear();
+        navigate("/");
+    }
+
+    return (
         <div>
-            <EasyRentalAppBar/>
+            <EasyRentalAppBar />
             <table>
                 <tr>
                     <td>
@@ -29,10 +35,10 @@ export default function UserHome( ){
                             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                                 Lending
                             </Typography>
-                            <form  noValidate autoComplete='off'>
+                            <form noValidate autoComplete='off'>
                                 <Button variant="outlined" onClick={regProductPage} className="small-margin-below"> Register a product</Button>
-                                <Button variant="outlined"  className="small-margin-below"> Manage your inventory</Button>
-                                <Button variant="outlined"  className="small-margin-below"> My Earnings</Button>
+                                <Button variant="outlined" className="small-margin-below"> Manage your inventory</Button>
+                                <Button variant="outlined" className="small-margin-below"> My Earnings</Button>
                             </form>
                         </Paper>
                     </td>
@@ -41,7 +47,7 @@ export default function UserHome( ){
                             <Typography variant="h6" component="div">
                                 Borrow
                             </Typography>
-                            <form  noValidate autoComplete='off'>
+                            <form noValidate autoComplete='off'>
                                 <Button variant="outlined" onClick={borrowProductPage} className="small-margin-below"> Borrow a new product</Button>
                             </form>
                         </Paper>
@@ -56,24 +62,24 @@ export default function UserHome( ){
                             <table>
                                 <tr>
                                     <td>
-                                    <form  noValidate autoComplete='off'>
-                                        <lable>Vaccuum Cleaner Transaction</lable>
-                                        <Button variant="outlined" color="success" className="small-margin-below"> Approve</Button>
-                                        <Button variant="outlined"  color="error" className="small-margin-below"> Reject</Button>
-                                    </form>
+                                        <form noValidate autoComplete='off'>
+                                            <lable>Vaccuum Cleaner Transaction</lable>
+                                            <Button variant="outlined" color="success" className="small-margin-below"> Approve</Button>
+                                            <Button variant="outlined" color="error" className="small-margin-below"> Reject</Button>
+                                        </form>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                    <form  noValidate autoComplete='off'>
-                                        <lable>Play Station Transaction</lable>
-                                        <Button variant="outlined" color="success" className="small-margin-below"> Approve</Button>
-                                        <Button variant="outlined"  color="error" className="small-margin-below"> Reject</Button>
-                                    </form>
+                                        <form noValidate autoComplete='off'>
+                                            <lable>Play Station Transaction</lable>
+                                            <Button variant="outlined" color="success" className="small-margin-below"> Approve</Button>
+                                            <Button variant="outlined" color="error" className="small-margin-below"> Reject</Button>
+                                        </form>
                                     </td>
                                 </tr>
                             </table>
-                            
+
                         </Paper>
                     </td>
                     <td>
@@ -81,9 +87,9 @@ export default function UserHome( ){
                             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                                 My Account
                             </Typography>
-                            <form  noValidate autoComplete='off'>
+                            <form noValidate autoComplete='off'>
                                 <Button variant="outlined" className="small-margin-below"> Edit account details</Button>
-                                <Button variant="outlined"  onClick={() => navigate("/")} className="small-margin-below"> LogOut</Button>
+                                <Button variant="outlined" onClick={logout} className="small-margin-below"> LogOut</Button>
                             </form>
                         </Paper>
                     </td>
