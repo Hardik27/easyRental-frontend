@@ -46,6 +46,7 @@ export default function Login() {
                 .then(res => {
                     if (res.data === "Successful") {
                         myStorage.setItem("email", userName);
+                        fetchOutStandingTransactions();
                         navigate("/userHome");
                     }
                     else {
@@ -53,6 +54,17 @@ export default function Login() {
                     }
                 })
         }
+    }
+
+    function fetchOutStandingTransactions(){
+        
+        axios.get(`${USER_REST_API_URL}` + "/fetchAllProducts?email="+myStorage.getItem("email"))
+                .then(res => {
+                    var obj=[{title: "Mac Book Pro", bookingId:1}, {title: "Play Station", bookingId:2}];
+                    myStorage.setItem("pendingTransaction", res.data);
+                    
+                })
+        console.log(myStorage.getItem("pendingTransaction"));
     }
 
     return (
