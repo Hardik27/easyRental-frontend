@@ -31,7 +31,7 @@ export default function UserHome() {
     function rejectTransaction(bookingId){
         const rejectTransactionPayLoad = { bookingId: bookingId};
         console.log(rejectTransactionPayLoad);
-        axios.get(`${USER_REST_API_URL}` + "/rejectTransaction?id="+bookingId)
+        axios.get(`${USER_REST_API_URL}` + "/rejectTransaction?", {params:{id: bookingId}})
             .then(res => {
                 if (res.data === "Successful") {
                     fetchOutStandingTransactions();
@@ -44,7 +44,7 @@ export default function UserHome() {
     }
 
     function fetchOutStandingTransactions(){
-        axios.get(`${USER_REST_API_URL}` + "/fetchAllProducts?email="+myStorage.getItem("email"))
+        axios.get(`${USER_REST_API_URL}` + "/fetchAllProducts", {params:{email: myStorage.getItem("email")}})
                 .then(res => {
                     myStorage.setItem("pendingTransaction", res.data);
                     
@@ -53,9 +53,7 @@ export default function UserHome() {
     }
 
     function approveTransaction(bookingId){
-        const approveTransactionPayLoad = { bookingId: bookingId};
-        console.log(approveTransactionPayLoad);
-        axios.post(`${USER_REST_API_URL}` + "/approveTransaction", approveTransactionPayLoad)
+        axios.get(`${USER_REST_API_URL}` + "/approveTransaction",{params:{id: bookingId}})
             .then(res => {
                 if (res.data === "Successful") {
                     fetchOutStandingTransactions();

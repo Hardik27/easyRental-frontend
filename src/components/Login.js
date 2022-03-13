@@ -58,11 +58,9 @@ export default function Login() {
 
     function fetchOutStandingTransactions(){
         
-        axios.get(`${USER_REST_API_URL}` + "/fetchAllProducts?email="+myStorage.getItem("email"))
+        axios.get(`${USER_REST_API_URL}` + "/fetchAllProducts"+{params:{email: myStorage.getItem("email")}})
                 .then(res => {
-                    var obj=[{title: "Mac Book Pro", bookingId:1}, {title: "Play Station", bookingId:2}];
                     myStorage.setItem("pendingTransaction", res.data);
-                    
                 })
         console.log(myStorage.getItem("pendingTransaction"));
     }
