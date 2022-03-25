@@ -43,14 +43,8 @@ In order to run the application use the command:
 
 We have created the following pages:
 * Login
-  ![Login](C:\easyRental\easyRental-frontend\images\login.png)
 * Register
-  ![Register](C:\easyRental\easyRental-frontend\images\registerUser.png)
 * Register Confirmation
-  ![regConfirm](C:\easyRental\easyRental-frontend\images\registerSuccesfull.png)
 * Common landing
-  ![landing](C:\easyRental\easyRental-frontend\images\userHome.png)
 * Borrow product
-  ![Borrow](C:\easyRental\easyRental-frontend\images\borrowProduct.png)
 * Register product
-  ![regProd](C:\easyRental\easyRental-frontend\images\registerProduct.png)
